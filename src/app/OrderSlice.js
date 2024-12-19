@@ -5,7 +5,10 @@ import {
     API_GET_ORDER_BY_ID,
     API_UPDATE_STATUS_PAYMENT_TO_CASH,
     API_UPDATE_STATUS_PAYMENT_TO_VN_PAY,
- } from "../constant";
+    API_GET_ALL_DELIVERING_ORDER,
+    API_GET_ALL_PENDING_PICK_UP_ORDER,
+} from "../constant";
+
 const initialState = {
     isLoading: false,
     error: null,
@@ -107,4 +110,23 @@ export const createOrderSlice = (set) => ({
             setLoading(set, false);
         }
     },
+
+    getAllPendingOrder: async () => {
+        setLoading(set, true);
+        try {
+            const { data } = await axiosClient.get(
+                API_GET_ALL_PENDING_PICK_UP_ORDER
+            );
+
+            set({ response: data.result });
+            return data.result;
+        }
+        catch (error) {
+            setError(set, error);
+        }
+        finally{
+            setLoading(set, false);
+        }
+    },
+
 })

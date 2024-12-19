@@ -24,6 +24,9 @@ import Payment from "./features/payment/Payment";
 
 import { jwtDecode } from "jwt-decode";
 import ShippingOptions from "./features/shipping/ShippingOptions";
+import StaffLayout from "./layouts/StaffLayout";
+import PendingOrder from "./features/staff/dashbar/order/PendingOrder/PendingOrder";
+import ViewOrder from "./features/staff/dashbar/order/ViewOrder.jsx/ViewOrder";
 
 export default function App() {
   const colorMode = useStore((state) => state.colorMode);
@@ -54,6 +57,9 @@ export default function App() {
       navigate("/manager");
     } else if (role == "Customer" && window.location.pathname == "/") {
       navigate("/");
+    }
+    else if (role === "SalesStaff" && window.location.pathname === "/") {
+      navigate("/staff");
     }
 
     setUserId(role);
@@ -110,18 +116,20 @@ export default function App() {
             element={<AccountManagement />}
           />
         </Route>
+
         <Route
           path="/staff"
           element={
-            <ProtectedRoute element={<ManagerLayout />} roles={["Staff"]} />
+            <ProtectedRoute element={<StaffLayout />} roles={["SalesStaff"]} />
           }
         >
-          <Route index element={<AccountManagement />} />
-          <Route path="manager" element={<AccountManagement />} />
-          <Route path="manager-staff" element={<AccountManagement />} />
-          <Route path="manager-customer" element={<AccountManagement />} />
+          <Route index element={<PendingOrder />} />
+          <Route path="pendingorder" element={<PendingOrder />} />
+          <Route path="orderdetail/:orderId" element={<ViewOrder />} /> 
+          <Route path="pendingpickuporder" element={<PendingOrder />} />
+          <Route path="completeorder" element={<AccountManagement />} />
           <Route
-            path="manage-pending-requests"
+            path="managependingrequests"
             element={<AccountManagement />}
           />
           <Route
@@ -133,6 +141,7 @@ export default function App() {
             element={<AccountManagement />}
           />
         </Route>
+
         <Route path="/access-denied" element={<AccessDenied />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

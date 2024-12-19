@@ -1,0 +1,141 @@
+/* MapView.module.css */
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+}
+
+.infoTable {
+  flex: 1; /* Chiếm 1 phần của không gian */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f4f4f4;
+}
+
+.buttonGroup {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.routeButton,
+.deleteButton {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.routeButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancelPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 2px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  z-index: 1000;
+}
+
+.cancelPopup h3 {
+  margin-top: 0;
+}
+
+.cancelPopup label {
+  font-size: 14px;
+}
+
+.cancelPopup textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.cancelPopup input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.popupActions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.popupActions button {
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.popupActions button:nth-child(1) {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.popupActions button:nth-child(2) {
+  background-color: #f44336;
+  color: white;
+}
+
+.numberedMarker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: white;
+  background-color: #3388ff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.marker-number {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 30px;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px;
+}
+
+.map {
+  flex: 1; /* Chiếm phần còn lại của không gian */
+  height: 80vh; /* Chiều cao bản đồ */
+  position: relative;
+}

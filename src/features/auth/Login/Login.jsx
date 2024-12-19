@@ -61,6 +61,7 @@ export default function Login() {
     const role = decoded.Role;
     if (role === "Customer") navigate("/", { replace: true });
     else if (role === "Manager") navigate("/manager", { replace: true });
+    else if (role === "SalesStaff") navigate("/staff", { replace: true });
     else navigate("/", { replace: true });
   };
 

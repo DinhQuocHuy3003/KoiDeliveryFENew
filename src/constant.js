@@ -72,8 +72,8 @@ export const API_GET_ALL_CANCEL_ORDER = "Order/GetAllCanceledOrderAsync";
 export const API_UPDATE_STATUS_PAYMENT_TO_VN_PAY = "Order/UpdateStatusPaymentToVnPayByOrderIdAsync";
 export const API_UPDATE_STATUS_PAYMENT_TO_CASH = "Order/UpdateStatusPaymentToCashByOrderIdAsync";
 
-//Order Item APIs
-export const API_GET_ORDER_FISH = "OrderItem/GetCreateOrderFish";
+//Fish Detail APIs
+export const API_GET_ORDER_FISH = "FishDetail/GetCreateFishDetail";
 
 //Payment APIs
 export const API_PAYMENT = "Payment";
