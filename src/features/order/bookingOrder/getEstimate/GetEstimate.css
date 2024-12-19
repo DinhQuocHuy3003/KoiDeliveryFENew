@@ -9,7 +9,7 @@
   /* Table Styling */
   .ant-table {
     border-radius: 8px;
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: #ffffff;
   }
   

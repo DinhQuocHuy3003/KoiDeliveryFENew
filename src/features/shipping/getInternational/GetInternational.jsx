@@ -62,7 +62,7 @@ export default function GetInternational() {
                   <td>
                     <button
                       onClick={() => setSelectedItem(item)}
-                      className="select-button"
+                      className="select-button-international"
                     >
                       Select
                     </button>
@@ -72,7 +72,9 @@ export default function GetInternational() {
             </tbody>
           </table>
           {selectedItem && (
-            <button onClick={handleSubmit} className="address-detail-button">
+            <button onClick={handleSubmit} className="address-detail-button-international"
+            style={{marginLeft: "450px"}}
+            >
               Address Detail
             </button>
           )}

@@ -1,7 +1,6 @@
 .get-international-container {
     font-family: Arial, sans-serif;
     margin: 20px auto;
-    max-width: 1200px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -59,7 +58,7 @@
     background-color: #d4edda;
   }
   
-  .select-button {
+  .select-button-international {
     padding: 6px 12px;
     background-color: #007bff;
     color: white;
@@ -73,7 +72,7 @@
     background-color: #0056b3;
   }
   
-  .address-detail-button {
+  .address-detail-button-international {
     margin-top: 20px;
     padding: 10px 20px;
     background-color: #28a745;

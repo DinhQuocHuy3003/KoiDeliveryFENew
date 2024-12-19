@@ -75,6 +75,7 @@ export default function GetDomestic() {
             <button
               onClick={handleSubmit}
               className="address-detail-button"
+              style={{marginLeft: "450px"}}
             >
               Address Detail
             </button>
