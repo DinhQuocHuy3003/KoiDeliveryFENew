@@ -104,3 +104,17 @@
   font-size: 0.9rem;
   color: #555;
 }
+
+.login-popup {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  text-align: center;
+  font-size: 16px;
+}

@@ -21,7 +21,10 @@ import AccessDenied from "./pages/AccessDenied";
 import CustomerLayout from "./layouts/CustomerLayout";
 import AddressDetail from "./features/order/bookingOrder/addressdetail/AddressDetail";
 import Payment from "./features/payment/Payment";
+import PaymentSuccess from "./features/payment/paymentStatus/paymentSuccess";
+import PaymentFail from "./features/payment/paymentStatus/paymentFail";
 import Profile from "./features/auth/UserProfile/UserProfile";
+
 
 import { jwtDecode } from "jwt-decode";
 import ShippingOptions from "./features/shipping/ShippingOptions";
@@ -67,6 +70,8 @@ export default function App() {
         <Route path="/" element={<EmptyLayout />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="paymentsuccess" element={<PaymentSuccess />} />
+          <Route path="paymentfail" element={<PaymentFail />} />
         </Route>
 
         <Route path="/" element={<HomeLayout />}>
@@ -74,6 +79,7 @@ export default function App() {
           <Route path="home" element={<Home />} />
           <Route path="service" element={<Service />} />
           <Route path="getestimate" element={<GetEstimate />} />
+          
         </Route>
 
         <Route

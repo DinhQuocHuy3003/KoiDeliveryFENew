@@ -1,44 +1,107 @@
+/* Service.css */
+
+/* General styles */
 .service-container {
-    font-family: 'Noto Sans', system-ui, sans-serif;
-    background-color: #f4f4f4;
-    padding: 40px;
-  }
-  
-  .service-title {
-    font-size: 36px;
-    text-align: center;
-    color: #333;
-    margin-bottom: 40px;
-  }
-  
-  .service-section {
-    margin-bottom: 30px;
-  }
-  
-  .service-subtitle {
-    font-size: 28px;
-    color: #008080;
-    margin-bottom: 20px;
-  }
-  
-  .service-description {
-    font-size: 18px;
-    color: #333;
-    line-height: 1.6;
-    text-align: justify;
-  }
-  
-  .service-image {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .service-container .service-section img {
-    display: block;
-    margin: 0 auto;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  padding: 40px;
+
+}
+
+.service-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.service-section {
+  margin-bottom: 40px;
+}
+
+.service-subtitle {
+  font-size: 1.5rem;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.service-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.service-image {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Package Services Section */
+/* .package-container {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+} */
+
+/* Panels */
+/* .left-panel,
+.right-panel {
+  width: 10%;
+  background-color: #f5f5f5;
+} */
+
+.body-panel {
+  /* margin: 0 5%; */
+  gap: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Box Card */
+.box-card {
+  width: calc(33.33% - 20px);
+  /* 3 cards per row with spacing */
+  margin-bottom: 20px;
+  background-color: #fafafa;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.box-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.box-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.box-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.box-price {
+  font-size: 18px;
+  color: #777;
+}

@@ -1,21 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Service.css';
 
 function Service() {
+  const [boxes, setBoxes] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from the API
+    fetch('https://localhost:7046/api/BoxType/GetAlBoxTypeAsync')
+      .then((response) => response.json())
+      .then((data) => setBoxes(data.result))
+      .catch((error) => console.error('Error fetching box data:', error));
+  }, []);
+
   return (
     <div className="service-container">
       <h1 className="service-title">Koi Fish Services</h1>
-      
+      {/* New Package Services Section */}
+
+
       <section className="service-section">
-        <h2 className="service-subtitle">What is Koi Fish?</h2>
+        <h2 className="service-subtitle">Package Prices</h2>
         <p className="service-description">
-          Koi fish (Nishikigoi) are a type of carp originating from Japan, primarily bred for ornamental purposes in ponds. Koi fish are known for their vibrant colors and stunning appearances, featuring hues like red, yellow, white, orange, black, and various combinations. They symbolize prosperity, luck, and resilience.
+          We offer various package services for different shipping needs. Choose from our range of box types based on your capacity and shipping cost requirements.
+        </p>
+        <div className="package-container">
+          <div className="body-panel">
+            {boxes.map((box) => (
+              <div key={box.id} className="box-card">
+                <img
+                  src={`./box-${box.id}.png`}
+                  alt={box.boxName}
+                  className="box-image"
+                />
+                <h3 className="box-name">{box.boxName}</h3>
+                <p className="box-price">
+                  Price: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(box.shippingCost)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Existing sections */}
+      <section className="service-section">
+        <h2 className="service-subtitle">What is Koi Delivery Service?</h2>
+        <p className="service-description">
+          Koi Delivery Service specializes in the safe and efficient transportation of Koi fish to customers across the country. We understand the unique requirements of these beautiful ornamental fish and ensure that every shipment is handled with the utmost care and professionalism.
         </p>
         <p className="service-description">
-          Koi fish are famous for their long lifespan and ease of care. Some Koi live over 50 years, and a few can even reach up to 200 years with proper care. This longevity makes Koi an essential part of gardens and living spaces in Japan and other countries.
+          Our service guarantees the health and safety of your Koi during transit by using specially designed packaging and monitoring systems. With Koi Delivery Service, you can enjoy the convenience of having high-quality Koi fish delivered right to your doorstep, ready to bring beauty, prosperity, and serenity to your pond or garden.
+        </p>
+        <p className="service-description">
+          At Koi Delivery Service, we offer various shipping options tailored to meet the needs of our customers, whether you're a seasoned Koi enthusiast or just starting your journey. From selecting the best Koi fish to ensuring proper packaging, our team is dedicated to delivering excellence.
+        </p>
+        <p className="service-description">
+          Our logistics network is designed to minimize transit times and maintain ideal conditions for your fish. With real-time tracking and customer support, you can stay informed throughout the delivery process. We pride ourselves on reliability and quality, making sure that your Koi arrive in pristine condition.
+        </p>
+        <p className="service-description">
+          Additionally, we provide detailed care instructions with every shipment to help you seamlessly transition your new Koi to their pond or tank. Trust Koi Delivery Service to bring these symbols of prosperity and beauty straight to your home.
         </p>
         <img src="/koi-1.png" alt="Koi Fish 1" className="service-image" />
       </section>
+
+
 
       <section className="service-section">
         <h2 className="service-subtitle">How to Care for Koi Fish</h2>
@@ -31,6 +81,8 @@ function Service() {
         <img src="/koi-2.png" alt="Koi Fish 2" className="service-image" />
       </section>
 
+
+
       <section className="service-section">
         <h2 className="service-subtitle">The Significance of Keeping Koi Fish</h2>
         <p className="service-description">
@@ -43,19 +95,6 @@ function Service() {
           Each color of Koi has its own meaning. Red Koi represents love and prosperity, yellow symbolizes wealth, while white stands for purity and clarity. Keeping Koi fish not only enhances the beauty of living spaces but also improves fortune and well-being for the owners.
         </p>
         <img src="/koi-3.png" alt="Koi Fish 3" className="service-image" />
-      </section>
-
-      <section className="service-section">
-        <h2 className="service-subtitle">The Importance of Koi Fish in Feng Shui</h2>
-        <p className="service-description">
-          In Feng Shui, Koi fish hold a special significance. They are considered symbols of prosperity, wealth, and luck. Keeping Koi in a home or garden not only creates a harmonious space but also attracts positive energy, helping the owner achieve success and happiness.
-        </p>
-        <p className="service-description">
-          Koi fish play an essential role in enhancing financial fortune. According to Feng Shui experts, placing a Koi pond in the home can attract positive energy while helping the owner avoid risks and misfortune in work and life. Particularly, placing Koi near the main entrance or areas with strong energy flow brings wealth and health to the family.
-        </p>
-        <p className="service-description">
-          Additionally, Koi fish help create a relaxing atmosphere, reduce stress, and bring peace of mind to the owner. This is why Koi are favored not only in gardens and ponds but also in living spaces of people who appreciate Feng Shui and harmony with nature.
-        </p>
       </section>
     </div>
   );
