@@ -227,9 +227,9 @@ const GetEstimate = () => {
               <Title level={5} className="card-title">
                 Box Allocations
               </Title>
-              <ul>
+              <ul  >
                 {estimate.boxAllocations.map((box, index) => (
-                  <li key={index}>{box}</li>
+                  <li key={index} style={{fontSize: '20px'}} >{box}</li>
                 ))}
               </ul>
             </Card>

@@ -181,35 +181,49 @@ export default function Payment() {
     } = orderDetail;
 
     const handlePayment = async () => {
-        try {
-            const response = await postPayment(id);
-            if (response) {
-                window.location.href = response;
-            } else {
-                toast.error("Payment URL not found");
-            }
-        } catch (error) {
-            toast.error("Failed to process payment");
-        }
-    };
+                try {
+                    const response = await postPayment(id); 
+                    console.log("response in payment", response);
+                    if (response) {
+                        window.location.href = response; 
+                    } else {
+                        console.error("Payment URL not found in response");
+                        toast.error("Payment URL not found");
+                    }
+                } catch (error) {
+                    console.error("Error during payment:", error);
+                    toast.error("Failed to process payment");
+                }
+            };
 
-    const handleChangePayment = async (id) => {
-        try {
-            await state.updateCashToPayment(id);
-            toast.success("Method payment changed successfully");
-        } catch (error) {
-            toast.error("Failed to change payment method");
-        }
-    };
-
-    const handleChangeCash = async (id) => {
-        try {
-            await state.updatePaymentToCash(id);
-            toast.success("Method cash changed successfully");
-        } catch (error) {
-            toast.error("Failed to change cash method");
-        }
-    };
+            const handleChangePayment = async (id) => {
+                        console.log("Change Payment:", id);
+                        toast.success("Payment changed successfully");
+                
+                        const response = await state.updateCashToPayment(id);
+                        
+                        if (state.error) {
+                            console.error(state.error);
+                        }
+                        else {
+                            console.log("Update payment successfully:", state.response);
+                            toast.success("Method payment changed successfully");
+                        }
+                    };
+                
+                    const handleChangeCash = async (id) => {
+                        console.log("Change Cash:", id);
+                        toast.success("Cash changed successfully");
+                
+                        const response = await state.updatePaymentToCash(id);
+                        if (state.error) {
+                            console.error(state.error);
+                        }
+                        else {
+                            console.log("Update cash successfully:", state.response);
+                            toast.success("Method cash changed successfully");
+                        }
+                    };
 
     return (
         <div className="payment-page">
