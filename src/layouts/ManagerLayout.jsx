@@ -12,6 +12,7 @@ export default function ManagerLayout() {
     logout();
     navigate("/");
   }
+  
   return (
     <>
       <Grid container sx={{ height: "100vh" }}>

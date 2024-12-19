@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "leaflet";
 import L from "leaflet";
 import styles from "./MapView.module.css";
 

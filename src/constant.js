@@ -75,6 +75,9 @@ export const API_UPDATE_STATUS_PAYMENT_TO_CASH = "Order/UpdateStatusPaymentToCas
 //Fish Detail APIs
 export const API_GET_ORDER_FISH = "FishDetail/GetCreateFishDetail";
 
+//Order Item APIs
+export const API_CREATE_ORDER_FISH = "OrderItem/GetCreateOrderFish";
+
 //Payment APIs
 export const API_PAYMENT = "Payment";
 export const API_PAYMENT_CALL_BACK = "Payment/callback";

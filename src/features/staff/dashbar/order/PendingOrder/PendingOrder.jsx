@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function PendingOrder () {
     const getAllPendingOrder = useStore((state) => state.getAllPendingOrder);
-    const [pendingOrders, setPendingOrders] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const response = useStore((state) => state.response);

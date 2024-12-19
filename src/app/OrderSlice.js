@@ -115,7 +115,7 @@ export const createOrderSlice = (set) => ({
         setLoading(set, true);
         try {
             const { data } = await axiosClient.get(
-                API_GET_ALL_PENDING_PICK_UP_ORDER
+                API_GET_ALL_PROCESSING_ORDER
             );
 
             set({ response: data.result });

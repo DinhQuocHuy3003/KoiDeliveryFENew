@@ -27,8 +27,11 @@ import ShippingOptions from "./features/shipping/ShippingOptions";
 import StaffLayout from "./layouts/StaffLayout";
 import PendingOrder from "./features/staff/dashbar/order/PendingOrder/PendingOrder";
 import ViewOrder from "./features/staff/dashbar/order/ViewOrder.jsx/ViewOrder";
-
+import FishDetail from "./features/staff/fishdetail/FishDetail";
+import DriverLayout from "./layouts/DriverLayout";
+import MapView from "./features/driver/currentLocation/MapView";
 export default function App() {
+
   const colorMode = useStore((state) => state.colorMode);
   const setUserId = useStore((state) => state.setUserId);
   const userInfo = useStore((state) => state.userInfo);
@@ -57,8 +60,7 @@ export default function App() {
       navigate("/manager");
     } else if (role == "Customer" && window.location.pathname == "/") {
       navigate("/");
-    }
-    else if (role === "SalesStaff" && window.location.pathname === "/") {
+    } else if (role === "SalesStaff" && window.location.pathname === "/") {
       navigate("/staff");
     }
 
@@ -125,13 +127,11 @@ export default function App() {
         >
           <Route index element={<PendingOrder />} />
           <Route path="pendingorder" element={<PendingOrder />} />
-          <Route path="orderdetail/:orderId" element={<ViewOrder />} /> 
+          <Route path="orderdetail/:orderId" element={<ViewOrder />} />
+          <Route path="fish-detail/:orderId/:orderItemId" element={<FishDetail />} />
           <Route path="pendingpickuporder" element={<PendingOrder />} />
           <Route path="completeorder" element={<AccountManagement />} />
-          <Route
-            path="managependingrequests"
-            element={<AccountManagement />}
-          />
+          <Route path="managependingrequests" element={<AccountManagement />} />
           <Route
             path="manage-accept-requests"
             element={<AccountManagement />}
@@ -140,6 +140,15 @@ export default function App() {
             path="manage-reject-requests"
             element={<AccountManagement />}
           />
+        </Route>
+
+        <Route
+          path="/driver"
+          element={
+            <ProtectedRoute element={<DriverLayout />} roles={["Driver"]} />
+          }
+        >
+          <Route index element={<MapView />} />
         </Route>
 
         <Route path="/access-denied" element={<AccessDenied />} />

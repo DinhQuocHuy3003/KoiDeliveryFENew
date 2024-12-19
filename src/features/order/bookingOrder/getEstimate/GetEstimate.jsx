@@ -12,7 +12,7 @@ import {
 } from "antd";
 import "./GetEstimate.css";
 import useStore from "../../../../app/store";
-import { API_GET_ORDER_FISH } from "../../../../constant";
+import { API_CREATE_ORDER_FISH } from "../../../../constant";
 import axiosClient from "../../../../services/axiosClient";
 
 const { Title, Text, Link } = Typography;
@@ -53,7 +53,7 @@ const GetEstimate = () => {
     console.log("Body request:", requestBody);
 
     // await getCreateOrderFish(requestBody);
-    var res = await axiosClient.post(API_GET_ORDER_FISH, requestBody);
+    var res = await axiosClient.post(API_CREATE_ORDER_FISH, requestBody);
     console.log("res", res.data.result);
     var result = res.data.result;
 
