@@ -80,7 +80,7 @@ export default function StaffLayout() {
 
           <Button
             variant="outlined"
-            onClick={() => setShowConsignmentButton(!showConsignmentButton)}
+            onClick={() => navigate("/staff/route")}
             sx={{
               marginBottom: 2,
               color: "#333",
@@ -96,79 +96,12 @@ export default function StaffLayout() {
               textTransform: "none",
             }}
           >
-            Consignment Management
+            Route Management
           </Button>
 
-          {showConsignmentButton && (
-            <>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  console.log("Pending Requests");
-                  navigate("/staff/pendingpickuporder");
-                }}
-                sx={{
-                  marginBottom: 1,
-                  backgroundColor: "#ffc107",
-                  color: "#333",
-                  "&:hover": {
-                    backgroundColor: "#ffca28",
-                  },
-                  width: "100%",
-                  borderRadius: "4px",
-                  padding: "10px",
-                  textTransform: "none",
-                }}
-              >
-                View Pending Requests
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  console.log("Accepted Requests");
-                  navigate("/staff");
-                }}
-                sx={{
-                  marginBottom: 1,
-                  backgroundColor: "#4caf50",
-                  color: "white",
-                  "&:hover": {
-                    backgroundColor: "#66bb6a",
-                  },
-                  width: "100%",
-                  borderRadius: "4px",
-                  padding: "10px",
-                  textTransform: "none",
-                }}
-              >
-                View Accepted Requests
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  console.log("Rejected Requests");
-                  navigate("/staff");
-                }}
-                sx={{
-                  marginBottom: 1,
-                  backgroundColor: "#f44336",
-                  color: "white",
-                  "&:hover": {
-                    backgroundColor: "#e57373",
-                  },
-                  width: "100%",
-                  borderRadius: "4px",
-                  padding: "10px",
-                  textTransform: "none",
-                }}
-              >
-                View Rejected Requests
-              </Button>
               <Button onClick={handleLogout} sx={{ marginTop: "auto" }}>
                 Logout
               </Button>
-            </>
-          )}
         </Grid>
         <Grid item lg={10} sm={12} sx={{ padding: 2 }}>
           <Outlet />

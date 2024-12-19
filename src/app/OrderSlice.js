@@ -132,4 +132,23 @@ export const createOrderSlice = (set) => ({
         }
     },
 
+    getAllPickUpOrder: async () => {
+        setLoading(set, true);
+        try {
+            const { data } = await axiosClient.get(
+                API_GET_ALL_PENDING_PICK_UP_ORDER
+            );
+            console.log("data trinh tam", data);
+            
+
+            set({ response: data.result });
+            return data.result;
+        }
+        catch (error) {
+            setError(set, error);
+        }
+        finally{
+            setLoading(set, false);
+        }
+    },
 })
