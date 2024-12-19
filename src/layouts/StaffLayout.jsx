@@ -35,7 +35,7 @@ export default function StaffLayout() {
             variant="h5"
             sx={{ marginBottom: 3, textAlign: "center", color: "#333" }}
           >
-            Panel
+            Welcome to Staff Page
           </Typography>
           <Button
             variant="outlined"

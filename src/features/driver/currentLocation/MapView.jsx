@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "leaflet";
+// import { MapContainer, Marker, Popup, TileLayer, useMap } from "leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
 import styles from "./MapView.module.css";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 function MapView({ location }) {
   const [mapLocation, setMapLocation] = useState({
@@ -15,21 +18,43 @@ function MapView({ location }) {
   const [showCancelPopup, setShowCancelPopup] = useState(false);
   const [cancelReason, setCancelReason] = useState("");
   const [image, setImage] = useState(null);
-  const driverId = localStorage.getItem("driverId");
+  const token = Cookies.get("token");
+  const decoded = jwtDecode(token);
+  const driverId = decoded.DriverId;
+  console.log("DriverId", driverId);
+
+  // useEffect(() => {
+  //   console.log("Received location:", location);
+  //   if (
+  //     location &&
+  //     typeof location.latitude === "number" &&
+  //     typeof location.longitude === "number"
+  //   ) {
+  //     setMapLocation({
+  //       latitude: location.latitude,
+  //       longitude: location.longitude,
+  //     });
+  //     updateDriverLocation(driverId, location.latitude, location.longitude);
+  //   }
+  // }, [location, driverId]);
 
   useEffect(() => {
-    if (
-      location &&
-      typeof location.latitude === "number" &&
-      typeof location.longitude === "number"
-    ) {
-      setMapLocation({
-        latitude: location.latitude,
-        longitude: location.longitude,
-      });
-      updateDriverLocation(driverId, location.latitude, location.longitude);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setMapLocation({ latitude, longitude });
+          updateDriverLocation(driverId, latitude, longitude);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          setStatus("Error fetching GPS location");
+        }
+      );
+    } else {
+      setStatus("Geolocation not supported");
     }
-  }, [location, driverId]);
+  }, [driverId]);
 
   useEffect(() => {
     fetchRouteDetails(driverId);
@@ -91,14 +116,35 @@ function MapView({ location }) {
   };
 
   const fetchDriverStatus = async (driverId) => {
+    if (!driverId) {
+      console.error("Invalid DriverId: ", driverId);
+      setStatus("Invalid DriverId");
+      return;
+    }
+
     try {
       const response = await fetch(
-        `https://localhost:7046/api/DriverStatus/${driverId}`
+        `https://localhost:7046/api/Driver/GetDriverBy/${driverId}`
       );
-      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("Failed to fetch driver status:", response.statusText);
+        setStatus("Unavailable");
+        return;
+      }
+
+      const responseText = await response.text();
+      if (!responseText) {
+        console.warn("Empty response from server.");
+        setStatus("Unavailable");
+        return;
+      }
+
+      const data = JSON.parse(responseText); 
       setStatus(data.status || "Unavailable");
     } catch (error) {
       console.error("Error fetching driver status: ", error);
+      setStatus("Error fetching status");
     }
   };
 

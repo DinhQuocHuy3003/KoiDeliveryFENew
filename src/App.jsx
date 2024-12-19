@@ -55,6 +55,9 @@ export default function App() {
 
     const decoded = jwtDecode(token);
     const role = decoded.Role;
+    const driverId = decoded.DriverId;
+
+    console.log("DriverId", driverId);
     console.log("Role App:", role);
     if (role == "Manager" && window.location.pathname == "/") {
       navigate("/manager");
@@ -62,6 +65,13 @@ export default function App() {
       navigate("/");
     } else if (role === "SalesStaff" && window.location.pathname === "/") {
       navigate("/staff");
+    } else if (role === "DeliveringStaff" && window.location.pathname === "/") {
+      if (driverId) {
+        navigate("/driver");
+      } else {
+        navigate("/");
+      }
+      
     }
 
     setUserId(role);
@@ -145,7 +155,7 @@ export default function App() {
         <Route
           path="/driver"
           element={
-            <ProtectedRoute element={<DriverLayout />} roles={["Driver"]} />
+            <ProtectedRoute element={<DriverLayout />} roles={["DeliveringStaff"]} />
           }
         >
           <Route index element={<MapView />} />

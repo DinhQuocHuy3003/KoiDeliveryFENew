@@ -1,8 +1,16 @@
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./HeadDriver.css";
+import useStore from "../../../app/store";
 
-const HeadDriver = ({ handleLogout}) => {
+const HeadDriver = () => {
+    const logout = useStore((state) => state.logout);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout(); 
+        navigate("/"); 
+    };
 
     return (
         <header className="header">
