@@ -1,19 +1,20 @@
-import { useFormik } from "formik";
 import React, { useState } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
-  OutlinedInput,
-  Button,
-  Grid,
   Box,
-  Typography,
-  InputAdornment,
-  IconButton,
+  Button,
+  CircularProgress,
   FormControl,
   FormHelperText,
-  CircularProgress,
+  Grid,
+  IconButton,
+  InputAdornment,
   InputLabel,
+  OutlinedInput,
+  Typography,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -24,11 +25,17 @@ export default function Register() {
   const navigate = useNavigate();
   const postRegister = useStore((state) => state.postRegister);
   const isLoading = useStore((state) => state.isLoading);
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Validation schema using Yup
-  const validationSchema = Yup.object().shape({
+  // Toggle visibility for password inputs
+  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
+  const toggleConfirmPasswordVisibility = () =>
+    setShowConfirmPassword((prev) => !prev);
+
+  // Validation schema with Yup
+  const validationSchema = Yup.object({
     firstName: Yup.string().required("First Name is required!"),
     lastName: Yup.string().required("Last Name is required!"),
     email: Yup.string()
@@ -49,7 +56,7 @@ export default function Register() {
       .matches(/^\d{10,11}$/, "Phone Number must be 10 or 11 digits."),
   });
 
-  // Formik for form handling
+  // Formik setup
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -58,25 +65,19 @@ export default function Register() {
       password: "",
       confirmPassword: "",
       phoneNumber: "",
-      role: 0, // Default role
+      role: 0,
     },
-    validationSchema: validationSchema,
+    validationSchema,
     onSubmit: async (values) => {
       try {
-        // Pass the request body directly
-        const response = await postRegister(values);
+        await postRegister(values);
         toast.success("Account created successfully! Please check your email.");
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
+        setTimeout(() => navigate("/login"), 2000);
       } catch (error) {
-        // Handle API errors
-        if (error.response) {
-          if (error.response.status === 400) {
-            toast.error("Username or Email already exists!");
-          } else if (error.response.status === 500) {
-            toast.error("Server error! Please try again later.");
-          }
+        if (error.response?.status === 400) {
+          toast.error("Username or Email already exists!");
+        } else if (error.response?.status === 500) {
+          toast.error("Server error! Please try again later.");
         } else {
           toast.error("An unexpected error occurred.");
         }
@@ -84,180 +85,181 @@ export default function Register() {
     },
   });
 
-  // Toggle password visibility
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const toggleConfirmPasswordVisibility = () =>
-    setShowConfirmPassword(!showConfirmPassword);
-
   return (
     <>
       <ToastContainer />
-      <Box className="register-container" sx={{ p: 3 }}>
+      <Box
+        sx={{
+          display: "box",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%", //thay đổi theo chiều dài của cái form
+          maxWidth: 500,
+          margin: "auto",
+          marginTop: "80px",
+          p: 4,
+          boxShadow: 2,
+          borderRadius: 2,
+          backgroundColor: "#fff",
+        }}
+      >
         <Typography variant="h4" align="center" gutterBottom>
-          Register User
+          Register Account
         </Typography>
         <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
             {/* First Name */}
             <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor="firstName">First Name</InputLabel>
+              <FormControl fullWidth error={formik.touched.firstName && !!formik.errors.firstName}>
+                <InputLabel>First Name</InputLabel>
                 <OutlinedInput
-                  id="firstName"
                   name="firstName"
                   value={formik.values.firstName}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.firstName && Boolean(formik.errors.firstName)
-                  }
+                  label="First Name"
                 />
-                <FormHelperText error>
-                  {formik.touched.firstName && formik.errors.firstName}
-                </FormHelperText>
+                <FormHelperText>{formik.touched.firstName && formik.errors.firstName}</FormHelperText>
               </FormControl>
             </Grid>
 
             {/* Last Name */}
             <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor="lastName">Last Name</InputLabel>
+              <FormControl fullWidth error={formik.touched.lastName && !!formik.errors.lastName}>
+                <InputLabel>Last Name</InputLabel>
                 <OutlinedInput
-                  id="lastName"
                   name="lastName"
                   value={formik.values.lastName}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.lastName && Boolean(formik.errors.lastName)
-                  }
+                  label="Last Name"
                 />
-                <FormHelperText error>
-                  {formik.touched.lastName && formik.errors.lastName}
-                </FormHelperText>
+                <FormHelperText>{formik.touched.lastName && formik.errors.lastName}</FormHelperText>
               </FormControl>
             </Grid>
 
             {/* Email */}
             <Grid item xs={12}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor="email">Email</InputLabel>
+              <FormControl fullWidth error={formik.touched.email && !!formik.errors.email}>
+                <InputLabel>Email</InputLabel>
                 <OutlinedInput
-                  id="email"
                   name="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  label="Email"
                 />
-                <FormHelperText error>
-                  {formik.touched.email && formik.errors.email}
-                </FormHelperText>
+                <FormHelperText>{formik.touched.email && formik.errors.email}</FormHelperText>
               </FormControl>
             </Grid>
 
             {/* Password */}
             <Grid item xs={12}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
+              <FormControl fullWidth error={formik.touched.password && !!formik.errors.password}>
+                <InputLabel>Password</InputLabel>
                 <OutlinedInput
-                  id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
                   value={formik.values.password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                  }
+                  label="Password"
                   endAdornment={
                     <InputAdornment position="end">
-                      <IconButton
-                        onClick={togglePasswordVisibility}
-                        edge="end"
-                      >
+                      <IconButton onClick={togglePasswordVisibility} edge="end">
                         {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
                     </InputAdornment>
                   }
                 />
-                <FormHelperText error>
-                  {formik.touched.password && formik.errors.password}
-                </FormHelperText>
+                <FormHelperText>{formik.touched.password && formik.errors.password}</FormHelperText>
               </FormControl>
             </Grid>
 
             {/* Confirm Password */}
             <Grid item xs={12}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor="confirmPassword">
-                  Confirm Password
-                </InputLabel>
+              <FormControl
+                fullWidth
+                error={formik.touched.confirmPassword && !!formik.errors.confirmPassword}
+              >
+                <InputLabel>Confirm Password</InputLabel>
                 <OutlinedInput
-                  id="confirmPassword"
                   name="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
                   value={formik.values.confirmPassword}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.confirmPassword &&
-                    Boolean(formik.errors.confirmPassword)
-                  }
+                  label="Confirm Password"
                   endAdornment={
                     <InputAdornment position="end">
-                      <IconButton
-                        onClick={toggleConfirmPasswordVisibility}
-                        edge="end"
-                      >
-                        {showConfirmPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
+                      <IconButton onClick={toggleConfirmPasswordVisibility} edge="end">
+                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
                     </InputAdornment>
                   }
                 />
-                <FormHelperText error>
-                  {formik.touched.confirmPassword &&
-                    formik.errors.confirmPassword}
+                <FormHelperText>
+                  {formik.touched.confirmPassword && formik.errors.confirmPassword}
                 </FormHelperText>
               </FormControl>
             </Grid>
 
             {/* Phone Number */}
             <Grid item xs={12}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor="phoneNumber">Phone Number</InputLabel>
+              <FormControl fullWidth error={formik.touched.phoneNumber && !!formik.errors.phoneNumber}>
+                <InputLabel>Phone Number</InputLabel>
                 <OutlinedInput
-                  id="phoneNumber"
                   name="phoneNumber"
                   value={formik.values.phoneNumber}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.phoneNumber &&
-                    Boolean(formik.errors.phoneNumber)
-                  }
+                  label="Phone Number"
                 />
-                <FormHelperText error>
-                  {formik.touched.phoneNumber && formik.errors.phoneNumber}
-                </FormHelperText>
+                <FormHelperText>{formik.touched.phoneNumber && formik.errors.phoneNumber}</FormHelperText>
               </FormControl>
             </Grid>
 
-            {/* Submit Button */}
-            <Grid item xs={12}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                disabled={isLoading}
-              >
-                {isLoading ? <CircularProgress size={24} /> : "Register"}
-              </Button>
+            {/* Nút Back */}
+            <Grid container spacing={2} sx={{ mt: 1, marginLeft: 1, marginRight: 1 }}>
+              {/* Nút Back */}
+              <Grid item xs={6}  >
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  fullWidth
+                  onClick={() => navigate("/home")}
+                >
+                  Back to Home
+                </Button>
+              </Grid>
+
+              {/* Nút Submit */}
+              <Grid item xs={6}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  disabled={isLoading}
+                >
+                  {isLoading ? <CircularProgress size={24} /> : "Confirm Register"}
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="body2" align="center" sx={{ mt: 2, fontSize: 17 }}>
+                  You already have an account?{" "}
+                  <span
+                    style={{
+                      color: "blue",
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                    }}
+                    onClick={() => navigate("/login")}
+                  >
+                    Login here.
+                  </span>
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
         </form>

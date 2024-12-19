@@ -1,0 +1,90 @@
+.get-international-container {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .get-international-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .get-international-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .international-table-container {
+    overflow-x: auto;
+  }
+  
+  .international-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: auto;
+  }
+  
+  .international-table th,
+  .international-table td {
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .international-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .international-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .selected-row {
+    background-color: #d4edda;
+  }
+  
+  .select-button {
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .select-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .address-detail-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .address-detail-button:hover {
+    background-color: #218838;
+  }
+  

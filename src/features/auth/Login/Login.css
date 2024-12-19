@@ -1,81 +1,106 @@
-/* Login.css */
+/* Container chính */
 .login-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  h2 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
-    transition: border-color 0.3s ease;
-  }
-  
-  input:focus {
-    border-color: #4caf50;
-    outline: none;
-  }
-  
-  button {
-    width: 100%;
-    padding: 14px;
-    background-color: #4caf50;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  .message-box {
-    margin-top: 20px;
-    padding: 12px;
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  p {
-    font-size: 14px;
-    margin-top: 20px;
-  }
-  
-  a {
-    color: #4caf50;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  .register-link-text{
-    color: darkblue;
-    text-decoration: solid underline ;
-  }
-  .login{
-    margin-bottom: 10px;
-  }
+  width: 100%;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Tiêu đề */
+.login-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input Fields */
+.login-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.login-input:focus {
+  border-color: #1976d2;
+}
+
+/* Primary Button (Login) */
+.login-button-primary {
+  background-color: #1976d2;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button-primary:hover {
+  background-color: #1565c0;
+}
+
+/* Secondary Button (Switch Role) */
+.login-button-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 1rem;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* Back Button */
+.login-button-back {
+  margin-top: 15px;
+  background-color: #e57373;
+  color: white;
+  font-size: 0.9rem;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button-back:hover {
+  background-color: #d32f2f;
+}
+
+/* Link */
+.login-link {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+/* Văn bản phụ */
+.login-text {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}

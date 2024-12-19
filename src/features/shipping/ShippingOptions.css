@@ -1,0 +1,45 @@
+/* ShippingOption.css */
+
+/* Container styles */
+.shipping-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Button group styles */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Button styles */
+.option-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ccc;
+    color: #000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.option-button:hover {
+    background-color: #bbb;
+}
+
+/* Selected button styles */
+.option-button.selected {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+/* Content styles */
+.content {
+    margin-top: 20px;
+    width: 80%;
+    text-align: center;
+}
