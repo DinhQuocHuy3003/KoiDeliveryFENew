@@ -94,7 +94,7 @@
             ) : (
               <>
                 <li className={styles.navItem}>
-                  <Link to="/userinfo" className={styles.navLink}>
+                  <Link to="/userprofile" className={styles.navLink}>
                     <img
                       src="hacker.png"
                       alt="Profile"

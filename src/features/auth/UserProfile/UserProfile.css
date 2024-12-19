@@ -1,0 +1,208 @@
+/* Định dạng cho container của trang */
+.user-profile-container {
+    padding: 20px;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Tiêu đề trang */
+  .user-profile-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  /* Container của phần chi tiết người dùng */
+  .profile-details-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  /* Tiêu đề đơn hàng */
+.orders-title {
+    font-size: 1.5rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Định dạng bảng đơn hàng */
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .orders-table th,
+  .orders-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .orders-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  
+  .orders-table td {
+    background-color: #fff;
+  }
+  
+  /* Nút feedback */
+  .feedback-btn {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .feedback-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  /* Định dạng ảnh người dùng */
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+  }
+  
+  /* Nếu không có ảnh, hiển thị vùng trống */
+  .profile-img-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #888;
+  }
+  
+  /* Container thông tin người dùng */
+  .profile-info-container {
+    font-size: 18px;
+  }
+  
+  /* Định dạng từng thông tin người dùng */
+  .profile-info {
+    margin: 10px 0;
+  }
+  
+  /* Thông báo khi đang tải */
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+  }
+  
+  /* Thông báo lỗi */
+  .error-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: red;
+  }
+  
+  /* Thông báo khi không tìm thấy profile */
+  .no-profile {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-btn {
+    padding: 8px 12px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pagination-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .pagination-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination-btn.active {
+    background-color: #0056b3;
+    font-weight: bold;
+  }
+  
+
+
+  .feedback-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .feedback-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+  }
+  
+  .feedback-modal textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .feedback-stars {
+    margin-bottom: 10px;
+  }
+  
+  .star {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .star.filled {
+    color: gold;
+  }
+  
+  .feedback-modal-actions button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .feedback-modal-actions button:hover {
+    background-color: #f0f0f0;
+  }

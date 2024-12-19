@@ -21,6 +21,7 @@ import AccessDenied from "./pages/AccessDenied";
 import CustomerLayout from "./layouts/CustomerLayout";
 import AddressDetail from "./features/order/bookingOrder/addressdetail/AddressDetail";
 import Payment from "./features/payment/Payment";
+import Profile from "./features/auth/UserProfile/UserProfile";
 
 import { jwtDecode } from "jwt-decode";
 import ShippingOptions from "./features/shipping/ShippingOptions";
@@ -85,6 +86,7 @@ export default function App() {
           <Route path="shippingoptions" element={<ShippingOptions />} />
           <Route path="addressdetail" element={<AddressDetail />} />
           <Route path="payment/:id" element={<Payment />} />
+          <Route path="userprofile" element={<Profile />} />
         </Route>
 
         <Route
