@@ -12,6 +12,7 @@ import Home from "./pages/Home/Home";
 import NotFound from "./pages/NotFound";
 import Login from "./features/auth/Login/Login";
 import Register from "./features/auth/register/Register";
+import EmailVerification from "./features/auth/Verification/EmailVerification";
 import Service from "./features/common/Header/service/Service";
 import ManagerLayout from "./layouts/ManagerLayout";
 import BookingOrder from "./features/order/bookingOrder/BookingOrder";
@@ -84,6 +85,7 @@ export default function App() {
         <Route path="/" element={<EmptyLayout />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="validate-email" element={<EmailVerification />} />
         </Route>
 
         <Route path="/" element={<HomeLayout />}>
