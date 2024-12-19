@@ -94,7 +94,7 @@ const GetEstimate = () => {
   }, [koiSizes]);
 
   const handleQuantityChange = (index, koiSizeId, value) => {
-    const safeValue = value < 0 ? 0 : value; // Prevent negative input
+    const safeValue = Math.max(0, parseInt(value || "0", 10));
 
     setOrderItemDetails((prev) =>
       prev.map((item, i) =>
@@ -130,10 +130,12 @@ const GetEstimate = () => {
         return (
           <InputNumber
             className="koi-input"
-            min={0} // Prevent negative input
+            min={0} 
             value={orderItem.quantity || 0}
             onChange={(value) => handleQuantityChange(index, size.id, value)}
             placeholder="0"
+            parser={(value) => value.replace(/[^0-9]/g, "")} // Xóa tất cả ký tự không phải số
+            formatter={(value) => `${value}`.replace(/[^0-9]/g, "")} // Hiển thị chỉ số
           />
         );
       },
@@ -196,6 +198,7 @@ const GetEstimate = () => {
               marginTop: "30px",
               fontSize: "25px",
               padding: "20px",
+              justifyContent : "center",
             }}
           >
             <Button
@@ -209,6 +212,7 @@ const GetEstimate = () => {
               type="primary"
               className="get-estimate-button"
               onClick={handleBookingSubmit}
+              style={{backgroundColor: "green"}}
             >
               Submit Booking Service
             </Button>
@@ -240,10 +244,10 @@ const GetEstimate = () => {
               }}
             >
               <img
-                src="boxcost.png"
+                src="./boxcost.png"
                 alt="Box Price"
                 className="box-image"
-                style={{ width: "100px", height: "auto" }}
+                style={{ width: "80px", height: "auto" }}
               />
               <Title level={5}>Box Cost</Title>
               <Text strong className="cost-amount">
@@ -262,10 +266,10 @@ const GetEstimate = () => {
               }}
             >
               <img
-                src="truck.png"
+                src="./truck.png"
                 alt="Shipping Cost Illustration"
                 className="cost-image"
-                style={{ width: "100px", height: "auto" }}
+                style={{ width: "80px", height: "auto" }}
               />
               <Title level={5}>Shipping cost</Title>
               <Text strong className="cost-amount">
@@ -282,10 +286,10 @@ const GetEstimate = () => {
               }}
             >
               <img
-                src="totalcost.png"
+                src="./totalcost.png"
                 alt="Shipping Cost Illustration"
                 className="cost-image"
-                style={{ width: "100px", height: "auto" }}
+                style={{ width: "80px", height: "auto" }}
               />
               <Title level={5}>Total Cost</Title>
               <Text strong className="cost-amount">
@@ -314,3 +318,7 @@ const GetEstimate = () => {
 };
 
 export default GetEstimate;
+
+
+
+

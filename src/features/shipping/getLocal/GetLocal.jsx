@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useStore from "../../../app/store";
 import { useNavigate } from "react-router-dom";
 import "./GetLocal.css";
@@ -12,6 +12,10 @@ export default function GetLocal() {
   const [selectedItem, setSelectedItem] = useState(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Gọi getLocal khi component được render lần đầu
+    handleGetLocal();
+  }, []); // Empty dependency array để chỉ gọi một lần
   const handleGetLocal = async () => {
     await getLocal();
   };

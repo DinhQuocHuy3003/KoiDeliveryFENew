@@ -1,0 +1,60 @@
+/* Payment.css */
+.payment-page {
+    background-color: #ffe5b4; /* Cam nhẹ */
+    padding: 20px;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.content {
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+    padding-left: 200px;
+}
+
+.field {
+    margin-bottom: 10px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    font-size: 20px;
+    padding: 10px 130px;
+    margin: 20px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-payment {
+    background-color: #28a745;
+    color: white;
+}
+
+.total-price {
+    font-size: 20px;
+    text-align: left;
+    margin-top: 20px;
+}
