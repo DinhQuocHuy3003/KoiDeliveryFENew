@@ -2,6 +2,7 @@
 // import useStore from "../../app/store";
 // import { useParams } from "react-router-dom";
 // import { toast } from "react-toastify";
+// import "./Payment.css";
 
 // export default function Payment() {
 //     const orderDetail = useStore((state) => state.orderDetail);
@@ -143,6 +144,8 @@
 
 
 
+
+
 import { useEffect } from "react";
 import useStore from "../../app/store";
 import { useParams } from "react-router-dom";
@@ -155,15 +158,15 @@ export default function Payment() {
     const getOrderById = useStore((state) => state.getOrderById);
     const postPayment = useStore((state) => state.postPayment);
     const state = useStore();
-
+    
     useEffect(() => {
-        if (id) {
+        if(id) {
             getOrderById(id);
         }
     }, [id, getOrderById]);
 
     if (!orderDetail) {
-        return <p className="loading">Loading...</p>;
+        return <p>Loading...</p>
     }
 
     const {
@@ -181,49 +184,49 @@ export default function Payment() {
     } = orderDetail;
 
     const handlePayment = async () => {
-                try {
-                    const response = await postPayment(id); 
-                    console.log("response in payment", response);
-                    if (response) {
-                        window.location.href = response; 
-                    } else {
-                        console.error("Payment URL not found in response");
-                        toast.error("Payment URL not found");
-                    }
-                } catch (error) {
-                    console.error("Error during payment:", error);
-                    toast.error("Failed to process payment");
-                }
-            };
+        try {
+            const response = await postPayment(id); 
+            console.log("response in payment", response);
+            if (response) {
+                window.location.href = response; 
+            } else {
+                console.error("Payment URL not found in response");
+                toast.error("Payment URL not found");
+            }
+        } catch (error) {
+            console.error("Error during payment:", error);
+            toast.error("Failed to process payment");
+        }
+    };
 
-            const handleChangePayment = async (id) => {
-                        console.log("Change Payment:", id);
-                        toast.success("Payment changed successfully");
-                
-                        const response = await state.updateCashToPayment(id);
-                        
-                        if (state.error) {
-                            console.error(state.error);
-                        }
-                        else {
-                            console.log("Update payment successfully:", state.response);
-                            toast.success("Method payment changed successfully");
-                        }
-                    };
-                
-                    const handleChangeCash = async (id) => {
-                        console.log("Change Cash:", id);
-                        toast.success("Cash changed successfully");
-                
-                        const response = await state.updatePaymentToCash(id);
-                        if (state.error) {
-                            console.error(state.error);
-                        }
-                        else {
-                            console.log("Update cash successfully:", state.response);
-                            toast.success("Method cash changed successfully");
-                        }
-                    };
+    const handleChangePayment = async (id) => {
+        console.log("Change Payment:", id);
+        toast.success("Payment changed successfully");
+
+        const response = await state.updateCashToPayment(id);
+        
+        if (state.error) {
+            console.error(state.error);
+        }
+        else {
+            console.log("Update payment successfully:", state.response);
+            toast.success("Method payment changed successfully");
+        }
+    };
+
+    const handleChangeCash = async (id) => {
+        console.log("Change Cash:", id);
+        toast.success("Cash changed successfully");
+
+        const response = await state.updatePaymentToCash(id);
+        if (state.error) {
+            console.error(state.error);
+        }
+        else {
+            console.log("Update cash successfully:", state.response);
+            toast.success("Method cash changed successfully");
+        }
+    };
 
     return (
         <div className="payment-page">
@@ -245,7 +248,13 @@ export default function Payment() {
                     <strong>Order Status:</strong> {orderStatus === 0 ? "Pending" : "Completed"}
                 </div>
                 <div className="field">
-                    <strong>Payment Method:</strong> Cash or Payment
+                    <strong>Payment Method:</strong> {paymentMethod === 0 ? "Cash" : "Online"}
+                </div>
+                <div className="field total-price">
+                    <strong>Total Price:</strong> {new Intl.NumberFormat("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                    }).format(totalPrice)}
                 </div>
                 <div className="field">
                     <strong>Receiver Name:</strong> {receiverName || "N/A"}
@@ -262,13 +271,8 @@ export default function Payment() {
                         currency: "VND",
                     }).format(transportPrice || 0)}
                 </div>
-                <div className="total-price">
-                <strong>Total Price:</strong> {new Intl.NumberFormat("vi-VN", {
-                    style: "currency",
-                    currency: "VND",
-                }).format(totalPrice)}
             </div>
-            </div>
+
             <div className="actions">
                 <button
                     onClick={() => handleChangePayment(id)}
@@ -284,15 +288,10 @@ export default function Payment() {
                     Change to Cash
                 </button>
 
-                <button 
-                    onClick={handlePayment} 
-                    disabled={orderStatus !== 0} 
-                    className="btn btn-payment"
-                >
-                    {orderStatus === 0 ? "Make Payment" : "Payment Completed"}
+                <button onClick={handlePayment} disabled={orderStatus !== 0} className="btn btn-payment">
+                    {orderStatus === 0 ? "Payment via VNPay" : "Payment Completed"}
                 </button>
             </div>
-           
         </div>
     );
 }

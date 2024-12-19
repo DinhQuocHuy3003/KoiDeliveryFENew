@@ -13,6 +13,7 @@ export default function ShippingOptions() {
             <div className="button-group">
                 <button
                     className={`option-button ${selectedOption === "international" ? "selected" : ""}`}
+                    style={{fontSize:'30px'}}
                     onClick={() => setSelectedOption("international")}
                 >
                     International
@@ -20,6 +21,7 @@ export default function ShippingOptions() {
 
                 <button
                     className={`option-button ${selectedOption === "domestic" ? "selected" : ""}`}
+                    style={{fontSize:'30px'}}
                     onClick={() => setSelectedOption("domestic")}
                 >
                     Domestic
@@ -27,13 +29,14 @@ export default function ShippingOptions() {
 
                 <button
                     className={`option-button ${selectedOption === "local" ? "selected" : ""}`}
+                    style={{fontSize:'30px'}}
                     onClick={() => setSelectedOption("local")}
                 >
                     Local
                 </button>
             </div>
 
-            <div className="content">
+            <div className="shipping-page-content">
                 {selectedOption === "international" && <GetInternational />}
                 {selectedOption === "domestic" && <GetDomestic />}
                 {selectedOption === "local" && <GetLocal />}

@@ -65,7 +65,7 @@ export default function GetLocal() {
         <button 
           onClick={handleSubmit} 
           className="address-detail-button"
-          style={{marginLeft: "400px"}}
+          style={{marginLeft: "0px"}}
         >
           Address Detail
         </button>

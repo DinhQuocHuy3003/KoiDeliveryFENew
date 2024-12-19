@@ -73,7 +73,7 @@ export default function GetInternational() {
           </table>
           {selectedItem && (
             <button onClick={handleSubmit} className="address-detail-button-international"
-            style={{marginLeft: "450px"}}
+            style={{marginLeft: "0px"}}
             >
               Address Detail
             </button>
