@@ -3,6 +3,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axiosClient from "../../../services/axiosClient";
+import {
+  API_REGISTER,
+} from "../../../constant";
 import {
   Box,
   Button,
@@ -70,10 +74,12 @@ export default function Register() {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        await postRegister(values);
+        // await postRegister(values);
+        const { data } = await axiosClient.post(API_REGISTER, values);
         toast.success("Account created successfully! Please check your email.");
-        setTimeout(() => navigate("/login"), 2000);
+        setTimeout(() => navigate("/validate-email", { state: { userId: data.result } }), 2000);
       } catch (error) {
+        console.log(error);
         if (error.response?.status === 400) {
           toast.error("Username or Email already exists!");
         } else if (error.response?.status === 500) {

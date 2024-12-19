@@ -7,6 +7,7 @@ import {
     API_UPDATE_STATUS_PAYMENT_TO_VN_PAY,
     API_GET_ALL_DELIVERING_ORDER,
     API_GET_ALL_PENDING_PICK_UP_ORDER,
+    API_GET_ALL_PROCESSING_ORDER
 } from "../constant";
 
 const initialState = {
@@ -117,6 +118,8 @@ export const createOrderSlice = (set) => ({
             const { data } = await axiosClient.get(
                 API_GET_ALL_PROCESSING_ORDER
             );
+            console.log("data trinh tam", data);
+            
 
             set({ response: data.result });
             return data.result;

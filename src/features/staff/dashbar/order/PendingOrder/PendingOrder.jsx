@@ -24,6 +24,22 @@ export default function PendingOrder () {
         fetchPendingOrders();
     }, [getAllPendingOrder]);
 
+    useEffect(() => {
+        const fetchPendingOrders = async () => {
+            setLoading(true);
+            try {
+                await getAllPendingOrder(); 
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false); 
+            }
+        };
+
+        fetchPendingOrders();
+    }, [getAllPendingOrder]);
+
+
     const handleViewDetail = (orderId) => {
         navigate(`/staff/orderdetail/${orderId}`);  
     };
@@ -36,6 +52,7 @@ export default function PendingOrder () {
         return <p>Error fetching pending orders: {error.message}</p>; 
     }
 
+    console.log("response 123", response)
     return (
         <div>
             <h2>Pending Orders</h2>
